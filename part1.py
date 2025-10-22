@@ -1,8 +1,11 @@
 import csv
 
 # ABSOLUTE PATH so it runs from VS Code terminal without changing folders- change if diffrent folders
-AIR_PATH = "/Users/paolorfc/Desktop/INTRO TO COMPUTING/LECTURES/PROBLEMS/GROUPPROJECT1/air_quality.csv"
-UHF_PATH = "/Users/paolorfc/Desktop/INTRO TO COMPUTING/LECTURES/PROBLEMS/GROUPPROJECT1/uhf.csv"
+# AIR_PATH = "/Users/paolorfc/Desktop/INTRO TO COMPUTING/LECTURES/PROBLEMS/GROUPPROJECT1/air_quality.csv"
+# UHF_PATH = "/Users/paolorfc/Desktop/INTRO TO COMPUTING/LECTURES/PROBLEMS/GROUPPROJECT1/uhf.csv"
+
+AIR_PATH = r"C:\Users\akt\Desktop\group-project-1\air_quality.csv"
+UHF_PATH = r"C:\Users\akt\Desktop\group-project-1\uhf.csv"
 
 def make_record(geo_id_str, geo_desc, date_str, pm25_str):
     # (geo_id:int, geo_desc:str, date_str:str, pm25:float)
@@ -151,12 +154,11 @@ def print_results(rows):
     <geo_id>, <geo_desc>, <date_str>, <pm2.5 with 2 decimals>
     """
     if not rows:
-        print("No matching measurements.") #if no corresponsing thing
+        print("No matching measurements.")
         return
 
     for (geo_id, geo_desc, date_str, pm25) in rows:
-        # pm25 already float; print with 2 decimals
-        print(f"{geo_id}, {geo_desc}, {date_str}, {pm25:.2f}")
+        print(f"{date_str} UHF {geo_id} {geo_desc} {pm25:.2f} mcg/m^3")
 
 #searching pm25 by zip
 
@@ -183,7 +185,7 @@ def search_by_zip(z, zip_to_uhf, by_geo):
                 while k < len(recs):
                     results.append(recs[k]) #append results of recs to results
                     k += 1
-            i += 1. #movde to next uhf id
+            i += 1  # move to next uhf id
     return results
 #after iterating through all uhf ids for the inputted zip return the results of measurments for each id
 
