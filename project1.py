@@ -71,25 +71,6 @@ def split_to_uhf42_ids(version, id_str):
 #→ This line represents three UHF42 areas: 105, 106, 107 that share those ZIPs.
 
 
-def split_to_uhf42_ids(version, id_str):
-    """
-    Convert the version+id_str into a list of UHF42 integer IDs.
-    - If version == 'UHF42': id_str is one 3-digit id (e.g., '105') -> [105]
-    - If version in {'UHF34','UHF35','UHF36'}: id_str is concatenated 3-digit ids
-      (e.g., '105106107') -> split into ['105','106','107'] -> [105,106,107]
-    """
-    if version == "UHF42":
-        return [int(id_str)]
-    else:
-        ids42 = []
-        i = 0
-        # chop into 3-char chunks
-        while i < len(id_str):
-            chunk = id_str[i:i+3]
-            if chunk != "":
-                ids42.append(int(chunk))
-            i += 3
-        return ids42
 
 def load_uhf_maps(UHF_PATH=UHF_PATH):
     """
