@@ -1,18 +1,16 @@
 import csv
+import os
 
-# ABSOLUTE PATH so it runs from VS Code terminal without changing folders- change if diffrent folders
-# AIR_PATH = "/Users/paolorfc/Desktop/INTRO TO COMPUTING/LECTURES/PROBLEMS/GROUPPROJECT1/air_quality.csv"
-# UHF_PATH = "/Users/paolorfc/Desktop/INTRO TO COMPUTING/LECTURES/PROBLEMS/GROUPPROJECT1/uhf.csv"
-
-AIR_PATH = r"C:\Users\akt\Desktop\group-project-1\air_quality.csv"
-UHF_PATH = r"C:\Users\akt\Desktop\group-project-1\uhf.csv"
+current_dir = os.getcwd()
+AIR_PATH = os.path.join(current_dir, 'air_quality.csv')
+UHF_PATH = os.path.join(current_dir, 'uhf.csv')
 
 def make_record(geo_id_str, geo_desc, date_str, pm25_str):
     # (geo_id:int, geo_desc:str, date_str:str, pm25:float)
     return (int(geo_id_str), geo_desc, date_str, float(pm25_str))
 
 # PART A (wrapped into a function, returns data in wanted form of dictionaries and a list of measurments for each type
-def load_air_quality():
+def load_air_quality(AIR_PATH=AIR_PATH):
     measurements = []
     by_geo = {}   
     by_date = {}
@@ -93,7 +91,7 @@ def split_to_uhf42_ids(version, id_str):
             i += 3
         return ids42
 
-def load_uhf_maps():
+def load_uhf_maps(UHF_PATH=UHF_PATH):
     """
     Read uhf.csv and build:
       - zip_to_uhf : zip(str) -> list of UHF42 ids (ints)
